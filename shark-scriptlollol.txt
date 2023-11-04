@@ -1,56 +1,35 @@
-local CoreGui = game:GetService("StarterGui")
+local notificationGui = Instance.new("ScreenGui")
+notificationGui.Enabled = true  
+notificationGui.IgnoreGuiInset = true 
 
-CoreGui:SetCore("SendNotification", {
-    Title = "script",
-    Text = "Loading...",
-    Duration = 3, 
-})
+local notificationFrame = Instance.new("Frame")
+notificationFrame.Size = UDim2.new(0, 200, 0, 50)--大小
+notificationFrame.Position = UDim2.new(0.5, -100, 1, -50) --位置
+notificationFrame.BackgroundColor3 = Color3.new(1, 1, 1)--背景颜色3
+notificationFrame.Parent = notificationGui
 
-repeat wait() until game:IsLoaded() wait(2)
-local ScreenGui = Instance.new("ScreenGui")
-local Fps = Instance.new("TextLabel")
+local notificationText = Instance.new("TextLabel")
+notificationText.Size = UDim2.new(1, 0, 1, 0)--大小
+notificationText.Position = UDim2.new(0, 0, 0, 0)--位置
+notificationText.BackgroundColor3 = Color3.new(1, 1, 1)--背景颜色3
+notificationText.TextColor3 = Color3.new(0, 0, 0)--文本颜色3
+notificationText.Text = "群728293118"
+notificationText.Font = Enum.Font.SourceSansBold
+notificationText.FontSize = Enum.FontSize.Size24
+notificationText.TextScaled = true
+notificationText.Parent = notificationFrame
 
-ScreenGui.Parent = game.CoreGui
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
-Fps.Name = "Fps"
-Fps.Parent = ScreenGui
-Fps.BackgroundColor3 = Color3.fromRGB(0, 0, 128)
-Fps.BackgroundTransparency = 1.000
-Fps.Position = UDim2.new(0.786138654, 0, 0, 0)
-Fps.Size = UDim2.new(0, 125, 0, 25)
-Fps.Font = Enum.Font.SourceSans
-Fps.TextColor3 = Color3.fromRGB(0, 0, 255)
-Fps.TextScaled = true
-Fps.TextSize = 14.000
-Fps.TextWrapped = true
-
-local script = Instance.new('LocalScript', Fps)
-local RunService = game:GetService("RunService")
-RunService.RenderStepped:Connect(function(frame)
-script.Parent.Text = ("FPS: "..math.round(1/frame)) 
-end)
-
-if game.PlaceId == 3101667897 then 
-
-    loadstring(game:HttpGet("https://pastebin.com/raw/QJ9qG9LD",true))()
-
-elseif game.PlaceId == 155615604 then
-	
-loadstring(game:HttpGet("https://pastebin.com/raw/QJ9qG9LD",true))()
-	
-elseif game.PlaceId == 3956818381 then 
-    loadstring(game:HttpGet("https://pastebin.com/raw/QJ9qG9LD",true))()
-
-elseif game.PlaceId == 1318971886 then 
-    loadstring(game:HttpGet("https://pastebin.com/raw/QJ9qG9LD",true))()
-	
-elseif game.PlaceId == 1318971886 then 
-
-    loadstring(game:HttpGet("https://pastebin.com/raw/QJ9qG9LD",true))()
-
-	
-else 
-    loadstring(game:HttpGet("https://pastebin.com/raw/QJ9qG9LD",true))()
-
+local function animateNotification()
+    local tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Quint, Enum.EasingDirection.Out, 0, false, 0)
+    local tween = game:GetService("TweenService"):Create(notificationFrame, tweenInfo, {Position = UDim2.new(0.5, -100, 0.70, -50)})
+    tween:Play()
+    wait(3)
+    tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Quint, Enum.EasingDirection.Out, 0, false, 0)
+    tween = game:GetService("TweenService"):Create(notificationFrame, tweenInfo, {Position = UDim2.new(0.5, -100, 1.25, -50)})
+    tween:Play()
+    wait(3)--停止
+    notificationGui:Destroy()
 end
+
+notificationGui.Parent = game.Players.LocalPlayer.PlayerGui
+animateNotification()
